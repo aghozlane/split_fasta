@@ -69,11 +69,6 @@ def read_fasta(fasta_stream):
         yield (header, ''.join(seq))
 
 
-#def count_entries(fasta_file):
-    #with open(fasta_file, 'r') as stream:
-            #return sum(1 for fasta_item in read_fasta(stream))
-
-
 def count_entries(fasta_file):
     count = 0
     try:
@@ -122,7 +117,6 @@ def sizeof_fmt(num):
     for x in ['bytes','KB','MB','GB','TB', 'PB']:
         if num < 1024.0:
             return num, x
-            #return "%3.1f %s" % (num, x)
         num /= 1024.0
     raise ValueError('The file size exceed the PB, I stop here')
 
@@ -170,16 +164,7 @@ if __name__ == '__main__':
         print("Please indicate the number of chunks or the max file size to "
                  "split the fasta file !", file=sys.stderr)
         sys.exit(parser.print_help())
-    #if not args.num_chunks:
-        #size, scale = sizeof_fmt(os.stat(args.fasta_file).st_size)
-        #print("File size is : {0:.1f} {1}".format(size, scale))
-        #if scale != "GB":
-            #print("Warning file scale is not in GB", file=sys.stderr)
-        #if (size % args.size_of_chunks) != 0:
-            #args.num_chunks = int(math.floor(size / args.size_of_chunks)) + 1
-        #else:
-            #args.num_chunks = int(math.floor(size / args.size_of_chunks))
-        #print("{0} chunks will be created".format(args.num_chunks))
+
     if args.num_chunks:
         print("Start reading {0}".format(args.fasta_file))
         num_entries = count_entries(args.fasta_file)
