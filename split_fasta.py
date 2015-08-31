@@ -120,13 +120,10 @@ def split(fasta_file, chunk_size, output_dir):
                             cur_chunk,
                             fasta_file_extension)
                     chunk_stream = open(chunk_file, 'wt')
-                    print("{1}{0}{2}".format(os.linesep, header, fill(seq)),
-                            file=chunk_stream)
-                    entries_in_chunk = entries_in_chunk + 1
-                else:
-                    print("{1}{0}{2}".format(os.linesep, header, fill(seq)),
-                            file=chunk_stream)
-                    entries_in_chunk = entries_in_chunk + 1
+
+                print("{1}{0}{2}".format(os.linesep, header, fill(seq)),
+                        file=chunk_stream)
+                entries_in_chunk = entries_in_chunk + 1
             chunk_stream.close()
     except IOError:
         sys.exit("Error cannot open {0}".format(fasta_file))
